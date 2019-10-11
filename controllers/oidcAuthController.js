@@ -49,6 +49,21 @@ const oidcLoginCallback = async (req, res, next) => {
     console.log('idToken', idToken);
     console.log('accessToken', accessToken);
 
+    // Request user data
+    const userInfoResponse = await request(config.USERINFO_URL, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+
+    const userInfo = JSON.parse(userInfoResponse.body);
+
+    console.log('OIDC USER', userInfo);
+
+    // Store the user in session so it is available for future requests
+    // as the idToken for Logout, and the context
+    req.session.user = userInfo;
+    req.session.idToken = idToken;
+
     return res.redirect('/');
   } catch (error) {
     console.error('LoginCallback ERROR', error);
