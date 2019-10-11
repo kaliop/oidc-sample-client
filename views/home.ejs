@@ -14,6 +14,25 @@
 <body>
 
 <div class="container has-text-centered">
+
+  <% if (locals.user) { %>
+
+  <h1 class="title has-text-grey">User Data</h1>
+  <table>
+    <tr><th>Login</th> <td><%- locals.user.login %></td></tr>
+    <tr><th>Name</th> <td><%- locals.user.lastName %></td></tr>
+    <tr><th>Given names</th> <td><%- locals.user.firstNames %></td></tr>
+    <tr><th>Birthdate</th> <td><%- locals.user.birthDate %></td></tr>
+    <tr><th>Email address</th> <td><%- locals.user.email %></td></tr>
+    <tr><th>Phone Number</th> <td><%- locals.user.phone %></td></tr>
+    <tr><th>Address</th> <td><%- locals.user.address %></td></tr>
+    <tr><th>Postal code</th> <td><%- locals.user.postalCode %></td></tr>
+    <tr><th>City</th> <td><%- locals.user.city %></td></tr>
+    <tr><th>Country </th> <td><%- locals.user.country %></td></tr>
+  </table>
+
+  <% } else { %>
+
   <div class="column is-4 is-offset-4">
     <h3 class="title has-text-grey">Local Authentication</h3>
     <form action="/login" method="post">
@@ -32,6 +51,9 @@
       </div>
     </form>
   </div>
+
+  <% } %>
+
 </div>
 
 </body>

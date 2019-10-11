@@ -7,6 +7,10 @@ const
   sessionstore = require('sessionstore'),
   bodyParser = require('body-parser');
 
+const {
+  localLogin
+} = require('./controllers/localAuthController');
+
 const app = express();
 
 // Note this enable to store user session in memory
@@ -26,12 +30,11 @@ app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => res.render('home'));
+app.get('/', (req, res) => res.render('home', {
+  user: req.session.user
+}));
 
-app.post('/login', (req, res) => {
-  console.log("@TODO: Login form", req.body);
-  res.render('home');
-});
+app.post('/login', localLogin);
 
 // Setting app port
 const port = process.env.PORT || '3000';
