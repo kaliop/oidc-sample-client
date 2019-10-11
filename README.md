@@ -82,5 +82,11 @@ We need also to check if the ID Token is valid (see next step)
 
 *checkout [step-05](https://github.com/kaliop/oidc-sample-client/commit/82e59bf42f60b06e0648995b2651bbb98d9d9c2c)*
 
-
 Check if the ID Token is a valid JWT and if it is compliant to [OpenID ID Token Validation rules](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
+
+## Step 6 - Login Callback : get User Info
+
+*checkout [step-06](https://github.com/kaliop/oidc-sample-client/commit/237cb0286670bce71ab6722a86c9ef3290f75332)*
+
+Call [User Info Endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) to get all the needed user data, and store them in session.
+Now, the end user is fully authenticated into our service.
