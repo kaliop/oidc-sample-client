@@ -37,3 +37,9 @@ Go to http://localhost:3000
 
 No difficulties here.
 Note: To avoid having to install an external database for the tutorial, we use a CSV file to store fake useres, and [node-csv-query](https://github.com/rdubigny/node-csv-query) library to request it.
+
+## Step 2 - logout
+
+*checkout [step-02](https://github.com/kaliop/oidc-sample-client/commit/810c326eb878504c4a7138a36ac5e56407ad641a)*
+
+Just detroy the session.
