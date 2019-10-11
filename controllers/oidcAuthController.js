@@ -59,9 +59,23 @@ const oidcLoginCallback = async (req, res, next) => {
 
     console.log('OIDC USER', userInfo);
 
+    const user = {
+      uid: userInfo.sub,
+      login: '## not-yet-implemented ##',
+      lastName: userInfo.family_name,
+      firstNames: userInfo.given_name,
+      birthDate: userInfo.birthdate,
+      email: userInfo.email,
+      phone: userInfo.phone_number,
+      address: userInfo.address && userInfo.address.street_address,
+      postalCode: userInfo.address && userInfo.address.postal_code,
+      city: userInfo.address && userInfo.address.locality,
+      country: userInfo.address && userInfo.address.country
+    };
+
     // Store the user in session so it is available for future requests
     // as the idToken for Logout, and the context
-    req.session.user = userInfo;
+    req.session.user = user;
     req.session.idToken = idToken;
 
     return res.redirect('/');

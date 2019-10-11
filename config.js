@@ -11,5 +11,5 @@ module.exports = {
   TOKEN_URL: `${FI_URL}/user/token`,
   USERINFO_URL: `${FI_URL}/api/user`,
   LOGIN_CALLBACK_URL: `${FS_URL}/login-callback`,
-  SCOPES: 'openid',
+  SCOPES: 'openid profile email phone address',
 };
