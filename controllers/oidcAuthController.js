@@ -97,6 +97,16 @@ const oidcLoginCallback = async (req, res, next) => {
   }
 };
 
+const oidcLogout = (req, res) => {
+  const { session: { idToken } } = req;
+
+  return res.redirect(
+    `${config.LOGOUT_URL}?id_token_hint=${idToken}`
+    + `&post_logout_redirect_uri=${config.LOGOUT_CALLBACK_URL}`
+    + `&state=${req.session.state}`
+  );
+};
+
 /*
 idToken validation
 @se https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation
@@ -153,4 +163,5 @@ const isIdTokenValid = (idToken, req) => {
 module.exports = {
   oidcLoginAuthorize,
   oidcLoginCallback,
+  oidcLogout,
 };

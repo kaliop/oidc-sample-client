@@ -15,6 +15,7 @@ const {
 const {
   oidcLoginAuthorize,
   oidcLoginCallback,
+  oidcLogout,
 } = require('./controllers/oidcAuthController');
 
 const app = express();
@@ -42,7 +43,9 @@ app.get('/', (req, res) => res.render('home', {
 
 app.post('/login', localLogin);
 
-app.get('/logout', localLogout);
+app.get('/logout', oidcLogout);
+
+app.get('/logout-callback', localLogout);
 
 app.post('/login-authorize', oidcLoginAuthorize);
 
