@@ -97,3 +97,14 @@ Now, the end user is fully authenticated into our service.
 
 Claims full scopes to get every userInfo.
 We also need to reformat the date received from userInfo, to match them to our local format.
+
+## Step 8 - Add "state" and "nonce" parameters
+
+*checkout [step-08](https://github.com/kaliop/oidc-sample-client/commit/76ef13f0c5964f703b3e0ceb2b10cebca2472aec)*
+
+These parameters are not required, but fully recommanded to secure the authentication flow.
+
+Both are random values that are included into the userAuthorize request and check later within the flow:
+
+* `state`, if present, must be added by the identity provider as additionnal parameter to`loginCallback` url.
+* `nonce`, if present, must be added by the identity provider within the ID Token.
