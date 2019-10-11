@@ -1,13 +1,19 @@
 const
+  crypto = require('crypto'),
   request = require('async-request'),
   config = require('../config');
 
 const oidcLoginAuthorize = (req, res) => {
+  req.session.state = crypto.randomBytes(20).toString('hex');
+  req.session.nonce = crypto.randomBytes(20).toString('hex');
+
   return res.redirect(
     `${config.AUTHORIZE_URL}?response_type=code`
       + `&client_id=${config.CLIENT_ID}`
       + `&redirect_uri=${config.LOGIN_CALLBACK_URL}`
       + `&scope=${config.SCOPES}`
+      + `&state=${req.session.state}`
+      + `&nonce=${req.session.nonce}`
   );
 };
 
@@ -15,6 +21,12 @@ const oidcLoginCallback = async (req, res, next) => {
   // check if the mandatory Authorization code is there
   if (!req.query.code) {
     console.error('missing "code" parameter');
+    return res.sendStatus(400);
+  }
+
+  // check if the mandatory state is there and has the good value
+  if (!req.query.state || req.query.state !== req.session.state) {
+    console.error('"state" mismatch');
     return res.sendStatus(400);
   }
 
@@ -120,6 +132,13 @@ const isIdTokenValid = (idToken, req) => {
     // The current time MUST be before the time represented by the exp Claim.
     if (jwt.exp * 1000 < Date.now()) {
       console.error('Token has expired');
+      return false;
+    }
+
+    // If a nonce value was sent in the Authentication Request, a nonce Claim MUST be present
+    // and its value checked to verify that it is the same value as the one that was sent in the Authentication Request
+    if (jwt.nonce != req.session.nonce) {
+      console.error('"nonce" mismatch');
       return false;
     }
 
