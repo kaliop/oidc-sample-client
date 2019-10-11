@@ -61,8 +61,45 @@ idToken validation
 @se https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation
 */
 const isIdTokenValid = (idToken, req) => {
-  // @TODO
-  return true;
+  console.log('idToken (Base64)', idToken);
+
+  const [header, data, signature] = idToken.split('.');
+  if (!header || !data || !signature) {
+    console.error('malformed idToken');
+    return false;
+  }
+
+  try {
+    const jwt = JSON.parse(new Buffer(data, 'base64').toString('utf-8'));
+    console.log('idToken (JWT)', jwt);
+
+    // The Issuer Identifier for the OpenID Provider (which is typically obtained during Discovery) MUST exactly match the value of the iss (issuer) Claim.
+    if (jwt.iss !== config.FI_URL) {
+      console.error('Bad issuer');
+      return false;
+    }
+
+    // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified by the iss (issuer) Claim as an audience.
+    // (...).
+    // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional audiences not trusted by the Client.
+    const audiences = jwt.aud.split(' ');
+    if (! audiences.includes(config.CLIENT_ID)) {
+      console.error('Bad audience');
+      return false;
+    }
+
+    // The current time MUST be before the time represented by the exp Claim.
+    if (jwt.exp * 1000 < Date.now()) {
+      console.error('Token has expired');
+      return false;
+    }
+
+    return true;
+  }
+  catch (err) {
+    console.error(err);
+    return false;
+  }
 };
 
 module.exports = {
