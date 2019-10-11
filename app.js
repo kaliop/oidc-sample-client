@@ -14,6 +14,7 @@ const {
 
 const {
   oidcLoginAuthorize,
+  oidcLoginCallback,
 } = require('./controllers/oidcAuthController');
 
 const app = express();
@@ -44,6 +45,8 @@ app.post('/login', localLogin);
 app.get('/logout', localLogout);
 
 app.post('/login-authorize', oidcLoginAuthorize);
+
+app.get('/login-callback', oidcLoginCallback);
 
 // Setting app port
 const port = process.env.PORT || '3000';
