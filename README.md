@@ -76,4 +76,11 @@ We need to call the [Token Endpoint](https://openid.net/specs/openid-connect-cor
 * `redirect_uri`: the current request URI.
 
 The reponse must be a JSON containing a `access_token` and a `id_token` attributes.
-We need also to check if the idToken is valid (see next step)
+We need also to check if the ID Token is valid (see next step)
+
+## Step 5 - Login Callback : ID Token Validation
+
+*checkout [step-05](https://github.com/kaliop/oidc-sample-client/commit/82e59bf42f60b06e0648995b2651bbb98d9d9c2c)*
+
+
+Check if the ID Token is a valid JWT and if it is compliant to [OpenID ID Token Validation rules](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
