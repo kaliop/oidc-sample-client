@@ -62,3 +62,18 @@ The first step is to redirect the user to the identity provider's `authorize` en
 * `client_id`: The OAuth 2.0 Client Identifier knonw by the identity provider.
 
 * `redirect_uri`: the URL to which the end user will be redirected by the identity provider once authenticated. (ie. the `loginCallback` that will be implemented in next steps). This uri must have been registered at the identity provider size.
+
+## Step 4 - Login Callback : get access token and id token.
+
+*checkout [step-04](https://github.com/kaliop/oidc-sample-client/commit/50a397360f8e4f571baf2a87f768961ae32b7ec9)*
+
+Once the end user has been authenticated by the identity provider, he is redirected to the `redrect_uri` specified above.
+The `loginCallback` endpoint is as follow : `<service-fqdn>/login-callback?code=<code>`.
+
+We need to call the [Token Endpoint](https://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint) as a POST HTTP request with following parameters:
+* `grant_type`: must be "authorisation_code"
+* `code`: the same code value that has just been sent within the loginCallback request. Used to validate the token request.
+* `redirect_uri`: the current request URI.
+
+The reponse must be a JSON containing a `access_token` and a `id_token` attributes.
+We need also to check if the idToken is valid (see next step)
