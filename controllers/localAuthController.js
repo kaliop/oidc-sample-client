@@ -12,4 +12,12 @@ const localLogin = async (req, res, next) => {
   }
 };
 
-module.exports = { localLogin };
+const localLogout = (req, res) => {
+  req.session.destroy();
+  return res.redirect('/');
+};
+
+module.exports = {
+  localLogin,
+  localLogout
+};

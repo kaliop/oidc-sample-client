@@ -8,7 +8,8 @@ const
   bodyParser = require('body-parser');
 
 const {
-  localLogin
+  localLogin,
+  localLogout
 } = require('./controllers/localAuthController');
 
 const app = express();
@@ -35,6 +36,8 @@ app.get('/', (req, res) => res.render('home', {
 }));
 
 app.post('/login', localLogin);
+
+app.get('/logout', localLogout);
 
 // Setting app port
 const port = process.env.PORT || '3000';
