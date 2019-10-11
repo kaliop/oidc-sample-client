@@ -108,3 +108,9 @@ Both are random values that are included into the userAuthorize request and chec
 
 * `state`, if present, must be added by the identity provider as additionnal parameter to`loginCallback` url.
 * `nonce`, if present, must be added by the identity provider within the ID Token.
+
+## Step 9: Logout propagation
+
+*checkout [step-09](https://github.com/kaliop/oidc-sample-client/commit/a2cc84d5b98a33567d4ec548c0953d3fce43f7ea)*
+
+Implement the logout propagation (see [RP-Initiated Logout](https://openid.net/specs/openid-connect-session-1_0.html#RPLogout)):
