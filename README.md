@@ -90,3 +90,10 @@ Check if the ID Token is a valid JWT and if it is compliant to [OpenID ID Token 
 
 Call [User Info Endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) to get all the needed user data, and store them in session.
 Now, the end user is fully authenticated into our service.
+
+## Step 7 - Login Callback : add scope and map fields
+
+*checkout [step-07](https://github.com/kaliop/oidc-sample-client/commit/f4bb796e3970cc070b8164b4f19c05cefdd1f7dd)*
+
+Claims full scopes to get every userInfo.
+We also need to reformat the date received from userInfo, to match them to our local format.
