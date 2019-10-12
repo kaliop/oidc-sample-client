@@ -114,3 +114,12 @@ Both are random values that are included into the userAuthorize request and chec
 *checkout [step-09](https://github.com/kaliop/oidc-sample-client/commit/a2cc84d5b98a33567d4ec548c0953d3fce43f7ea)*
 
 Implement the logout propagation (see [RP-Initiated Logout](https://openid.net/specs/openid-connect-session-1_0.html#RPLogout)):
+
+# Resources
+
+* [Demo OpenID Connect identity provider](https://github.com/kaliop/oidc-sample-provider)
+* [OpenID Connect Official Specifications](https://openid.net/specs/)
+* [OpenID Connect Official Basic Guide](https://openid.net/specs/openid-connect-basic-1_0.html)
+* [JSON Web Tokens](https://jwt.io/)
+* [Unofficial documentation](https://developer.orange.com/tech_guide/openid-connect-1-0/)
+* [List of certified OpenID Connect libraries](https://openid.net/developers/certified/)
