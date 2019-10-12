@@ -93,14 +93,14 @@ Now, the end user is fully authenticated into our service.
 
 ## Step 7 - Login Callback : add scope and map fields
 
-*checkout [step-07](https://github.com/kaliop/oidc-sample-client/commit/f4bb796e3970cc070b8164b4f19c05cefdd1f7dd)*
+*checkout [step-07](https://github.com/kaliop/oidc-sample-client/commit/421f5e9600efe537a06b94b5c7f92b786397fd36)*
 
 Claims full scopes to get every userInfo.
 We also need to reformat the date received from userInfo, to match them to our local format.
 
 ## Step 8 - Add "state" and "nonce" parameters
 
-*checkout [step-08](https://github.com/kaliop/oidc-sample-client/commit/76ef13f0c5964f703b3e0ceb2b10cebca2472aec)*
+*checkout [step-08](https://github.com/kaliop/oidc-sample-client/commit/80cad32f61e5f5d1ce2a283d9a617ac478bc7c36)*
 
 These parameters are not required, but fully recommanded to secure the authentication flow.
 
@@ -111,7 +111,7 @@ Both are random values that are included into the userAuthorize request and chec
 
 ## Step 9: Logout propagation
 
-*checkout [step-09](https://github.com/kaliop/oidc-sample-client/commit/a2cc84d5b98a33567d4ec548c0953d3fce43f7ea)*
+*checkout [step-09](https://github.com/kaliop/oidc-sample-client/commit/8c95120e00c9cb59a02515d2a9b099b411eeca5e)*
 
 Implement the logout propagation (see [RP-Initiated Logout](https://openid.net/specs/openid-connect-session-1_0.html#RPLogout)):
 
